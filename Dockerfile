@@ -98,7 +98,11 @@ RUN apk add --no-cache \
 	pecl install amqp &&  \
 	docker-php-ext-enable amqp;
 
-COPY --from=composer:1.7 /usr/bin/composer /usr/bin/composer
+ARG COMPOSER_VERSION=1.7.0
+RUN curl -L https://github.com/composer/composer/releases/download/${COMPOSER_VERSION}/composer.phar -o /usr/local/bin/composer ;\
+	chmod +x /usr/local/bin/composer
+
+#COPY --from=composer:1.7 /usr/bin/composer /usr/bin/composer
 COPY php.ini /usr/local/etc/php/php.ini
 
 # https://getcomposer.org/doc/03-cli.md#composer-allow-superuser
