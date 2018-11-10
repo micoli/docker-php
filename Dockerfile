@@ -58,7 +58,7 @@ RUN set -eux; \
 	)"; \
 	apk add --no-cache --virtual .sylius-phpexts-rundeps $runDeps; \
 	\
-	apk del .build-deps;\
+	apk del .build-deps;
 
 RUN apk add --no-cache \
 		icu-dev \
@@ -106,5 +106,4 @@ ENV COMPOSER_ALLOW_SUPERUSER=1
 RUN set -eux; \
 	composer global require "hirak/prestissimo:^0.3" --prefer-dist --no-progress --no-suggest --classmap-authoritative; \
 	composer clear-cache
-	
 ENV PATH="${PATH}:/root/.composer/vendor/bin"
