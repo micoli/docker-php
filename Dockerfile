@@ -1,7 +1,4 @@
-# the different stages of this Dockerfile are meant to be built into separate images
-# https://docs.docker.com/compose/compose-file/#target
-
-ARG PHP_VERSION=7.2
+ARG PHP_VERSION=7.3.6
 
 FROM php:${PHP_VERSION}-fpm-alpine
 
@@ -109,5 +106,5 @@ COPY php.ini /usr/local/etc/php/php.ini
 ENV COMPOSER_ALLOW_SUPERUSER=1
 RUN set -eux; \
 	composer global require "hirak/prestissimo:^0.3" --prefer-dist --no-progress --no-suggest --classmap-authoritative; \
-	composer clear-cache
+	composer clear-cache; 
 ENV PATH="${PATH}:/root/.composer/vendor/bin"
