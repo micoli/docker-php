@@ -109,8 +109,10 @@ RUN set -eux; \
 	composer clear-cache;
 ENV PATH="${PATH}:/root/.composer/vendor/bin"
 
+# dev tools
 RUN apk add --no-cache \
 		make \
-		nodejs ;\
+		nodejs \
+		npm;\
 	npm install -g \
 		yarn ; \
