@@ -93,7 +93,8 @@ RUN apk add --no-cache \
 	pecl install imagick &&  \
 	docker-php-ext-enable imagick && \
 	pecl install amqp &&  \
-	docker-php-ext-enable amqp;
+	docker-php-ext-enable amqp;\
+    apk add php7-openssl;
 
 ARG COMPOSER_VERSION=1.7.0
 RUN curl -L https://github.com/composer/composer/releases/download/${COMPOSER_VERSION}/composer.phar -o /usr/local/bin/composer ;\
@@ -107,4 +108,6 @@ ENV COMPOSER_ALLOW_SUPERUSER=1
 RUN set -eux; \
 	composer global require "hirak/prestissimo:^0.3" --prefer-dist --no-progress --no-suggest --classmap-authoritative; \
 	composer clear-cache;
+
+
 ENV PATH="${PATH}:/root/.composer/vendor/bin"
